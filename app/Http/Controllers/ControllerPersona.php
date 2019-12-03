@@ -27,7 +27,7 @@ class ControllerPersona extends Controller
      */
     public function create()
     {
-        //
+        return view('personas.nueva');
     }
 
     /**
@@ -38,7 +38,16 @@ class ControllerPersona extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $p = new Persona;
+        $p->ci = $request["ci"];
+        $p->nombres = $request["nombres"];
+        $p->apellidos = $request["apellidos"];
+        $p->direccion = $request["direccion"];
+        $p->telefono = $request["telefono"];
+        $p->fecha_nacimiento = $request["fecha_nacimiento"];
+        $p->save();
+        return redirect('persona');
+        //return redirect()->route('persona.nueva');
     }
 
     /**
@@ -60,7 +69,9 @@ class ControllerPersona extends Controller
      */
     public function edit($id)
     {
-        //
+        $persona = Persona::find($id);
+        
+        return view('personas.editar')->with('persona', $persona);
     }
 
     /**
@@ -70,9 +81,18 @@ class ControllerPersona extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $persona = Persona::find($request["id"]);
+        $persona->nombres = $request["nombres"];
+        $persona->apellidos = $request["apellidos"];
+        $persona->direccion = $request["direccion"];
+        $persona->telefono = $request["telefono"];
+
+        
+
+        $persona->save();
+        return redirect('persona');
     }
 
     /**
@@ -83,6 +103,6 @@ class ControllerPersona extends Controller
      */
     public function destroy($id)
     {
-        //
+        return "Se elimino al sujeto con el id: ".$id."<br>Diganle a su familia murio siendo un hereo";
     }
 }

@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    One Day Riot
                 </div>
 
                 <div class="links">

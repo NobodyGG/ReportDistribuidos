@@ -45,3 +45,8 @@ Route::get('admin/tabla', 'ControllerAdmin@tabla');
 */
 
 Route::get('persona', 'ControllerPersona@index');
+Route::get('persona/editar/{id}', 'ControllerPersona@edit');
+Route::get('persona/eliminar/{id}', 'ControllerPersona@destroy');
+Route::get('', 'ControllerPersona@create')->name('persona.nueva');
+Route::post('persona/crear', 'ControllerPersona@store')->name('persona.crear');
+Route::post('persona/actualizar', 'ControllerPersona@update')->name('persona.actualizar');
